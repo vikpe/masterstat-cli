@@ -16,6 +16,9 @@ jobs:
         run: |
           mkdir dist
           
+          # update version
+          sed -i 's/__VERSION__/${{ github.ref_name }}/g' masterstat.go
+          
           # linux
           GOOS=linux GOARCH=amd64 go build -o dist/masterstat
           zip --junk-paths dist/masterstat-linux64-${{ github.ref_name }}.zip dist/masterstat

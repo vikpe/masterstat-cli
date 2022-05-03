@@ -22,7 +22,7 @@ func main() {
 		Name:        "masterstat",
 		Description: "Fetch server addresses from QuakeWorld master servers.",
 		UsageText:   "masterstat [<address> ...]",
-		Version:     "v0.1.0",
+		Version:     "__VERSION__",
 		Action: func(c *cli.Context) error {
 			masterAddresses := c.Args().Slice()
 			serverAddresses, err := masterstat.GetServerAddressesFromMany(masterAddresses)
