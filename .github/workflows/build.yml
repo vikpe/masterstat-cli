@@ -27,7 +27,7 @@ jobs:
           ls dist
 
       - name: Test
-        run: ./dist/masterstat-linux64-${{ github.ref_name }} --help
+        run: ./dist/masterstat --help
 
       - name: Release
         uses: softprops/action-gh-release@v1
