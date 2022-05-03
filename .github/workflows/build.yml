@@ -17,6 +17,7 @@ jobs:
           mkdir dist
           GOOS=linux GOARCH=amd64 go build -o dist/masterstat-linux64-${{ github.ref_name }}
           GOOS=windows GOARCH=amd64 go build -o dist/masterstat-win64-${{ github.ref_name }}.exe
+          ls dist
 
       - name: Test
         run: ./dist/masterstat-linux64-${{ github.ref_name }} --help
