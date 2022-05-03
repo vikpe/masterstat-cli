@@ -19,7 +19,7 @@ jobs:
         run: go build -o masterstat-ubuntu-${{ github.ref_name }}
 
       - name: Test
-        run: ./masterstat-ubuntu-${{ github.ref_name }} master.quakeworld.nu:270
+        run: ./masterstat-ubuntu-${{ github.ref_name }} master.quakeworld.nu:27000
 
       - name: Release
         uses: softprops/action-gh-release@v1
