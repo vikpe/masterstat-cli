@@ -18,6 +18,8 @@ jobs:
       - name: Test
         run: ./masterstat-ubuntu-${{ github.ref_name }} --help
 
+      - run: echo ${{ github.ref }}
+
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/v')
