@@ -1,2 +1,3 @@
-# serverstat-cli
-CLI for fetching server addresses from QuakeWorld master servers.
+# Serverstat CLI
+
+> CLI for fetching server addresses from QuakeWorld master servers.
