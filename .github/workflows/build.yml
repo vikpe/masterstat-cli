@@ -18,11 +18,11 @@ jobs:
           
           # linux
           GOOS=linux GOARCH=amd64 go build -o dist/masterstat
-          zip --junk-paths masterstat-linux64-${{ github.ref_name }}.zip dist/masterstat
+          zip --junk-paths dist/masterstat-linux64-${{ github.ref_name }}.zip dist/masterstat
           
           # windows
           GOOS=windows GOARCH=amd64 go build -o dist/masterstat.exe
-          zip --junk-paths masterstat-win64-${{ github.ref_name }}.zip dist/masterstat.exe
+          zip --junk-paths dist/masterstat-win64-${{ github.ref_name }}.zip dist/masterstat.exe
           
           ls dist
 
