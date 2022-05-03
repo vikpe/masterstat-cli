@@ -19,7 +19,7 @@ jobs:
           GOOS=windows GOARCH=amd64 go build -o dist/masterstat-win64-${{ github.ref_name }}.exe
 
       - name: Test
-        run: ./dist/masterstat-linux-${{ github.ref_name }} --help
+        run: ./dist/masterstat-linux64-${{ github.ref_name }} --help
 
       - name: Release
         uses: softprops/action-gh-release@v1
