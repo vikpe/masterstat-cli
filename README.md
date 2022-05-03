@@ -7,6 +7,8 @@ Fetch server addresses from QuakeWorld master servers.
 Example:   masterstat master.quakeworld.nu:27000 qwmaster.ocrana.de:27000
 ```
 
+## Download
+
 See [releases](https://github.com/vikpe/masterstat-cli/releases) for downloads.
 
 ## Usage
