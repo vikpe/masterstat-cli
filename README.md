@@ -1,4 +1,4 @@
-# MasterStat CLI
+# MasterStat CLI [![build](https://github.com/vikpe/masterstat-cli/actions/workflows/build.yml/badge.svg)](https://github.com/vikpe/masterstat-cli/actions/workflows/build.yml)
 
 > CLI for fetching server addresses from QuakeWorld master servers
 
