@@ -23,9 +23,10 @@ jobs:
           GOOS=linux GOARCH=amd64 go build -o dist/masterstat
           zip --junk-paths dist/masterstat-linux64-${{ github.ref_name }}.zip dist/masterstat
           
+          # TODO: enable once working properly
           # windows
-          GOOS=windows GOARCH=amd64 go build -o dist/masterstat.exe
-          zip --junk-paths dist/masterstat-win64-${{ github.ref_name }}.zip dist/masterstat.exe
+          #GOOS=windows GOARCH=amd64 go build -o dist/masterstat.exe
+          #zip --junk-paths dist/masterstat-win64-${{ github.ref_name }}.zip dist/masterstat.exe
           
           ls dist
 
