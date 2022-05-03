@@ -44,3 +44,11 @@ masterstat master.quakeworld.nu:27000 qwmaster.ocrana.de:27000
 91.211.246.220:28000
 [...]
 ```
+
+## Build from source
+
+```shell
+git clone git@github.com:vikpe/masterstat-cli.git
+cd masterstat-cli
+go build
+```
