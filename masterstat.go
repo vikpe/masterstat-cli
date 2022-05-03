@@ -25,7 +25,11 @@ func main() {
 		Version:     "v0.1.0",
 		Action: func(c *cli.Context) error {
 			masterAddresses := c.Args().Slice()
-			serverAddresses := masterstat.GetServerAddressesFromMany(masterAddresses)
+			serverAddresses, err := masterstat.GetServerAddressesFromMany(masterAddresses)
+
+			if err != nil {
+				return err
+			}
 
 			for _, serverAddress := range serverAddresses {
 				fmt.Println(serverAddress)
@@ -43,6 +47,7 @@ func main() {
 
 	err := app.Run(args)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Fprintf(os.Stderr, "ERROR: %s\n", err)
+		os.Exit(1)
 	}
 }
