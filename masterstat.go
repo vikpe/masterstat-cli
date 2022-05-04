@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/urfave/cli/v2"
-	"github.com/vikpe/qw-masterstat"
+	"github.com/vikpe/masterstat"
 )
 
 func init() {

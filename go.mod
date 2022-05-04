@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/urfave/cli/v2 v2.5.1
-	github.com/vikpe/qw-masterstat v0.1.3
+	github.com/vikpe/masterstat v0.1.5
 )
 
 require (
