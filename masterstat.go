@@ -8,16 +8,14 @@ import (
 	"github.com/vikpe/masterstat"
 )
 
-func init() {
+func run(args []string) int {
 	cli.AppHelpTemplate = `{{.Name}} [{{.Version}}]
 {{.Description}}
 
   Usage:   {{.UsageText}}
 Example:   {{.Name}} master.quakeworld.nu:27000 qwmaster.ocrana.de:27000
 `
-}
 
-func main() {
 	app := &cli.App{
 		Name:        "masterstat",
 		Description: "Fetch server addresses from QuakeWorld master servers.",
@@ -39,15 +37,19 @@ func main() {
 		},
 	}
 
-	args := os.Args
-
-	if 1 == len(os.Args) {
+	if 1 == len(args) {
 		args = append(args, "--help")
 	}
 
 	err := app.Run(args)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "ERROR: %s\n", err)
-		os.Exit(1)
+		return 1
 	}
+
+	return 0
+}
+
+func main() {
+	os.Exit(run(os.Args))
 }
