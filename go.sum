@@ -7,8 +7,8 @@ github.com/russross/blackfriday/v2 v2.1.0/go.mod h1:+Rmxgy9KzJVeS9/2gXHxylqXiyQD
 github.com/stretchr/testify v1.7.1 h1:5TQK59W5E3v0r2duFAb7P95B6hEeOyEnHRa8MjYSMTY=
 github.com/urfave/cli/v2 v2.5.1 h1:YKwdkyA0xTBzOaP2G0DVxBnCheHGP+Y9VbKAs4K1Ess=
 github.com/urfave/cli/v2 v2.5.1/go.mod h1:oDzoM7pVwz6wHn5ogWgFUU1s4VJayeQS+aEZDqXIEJs=
-github.com/vikpe/masterstat v0.1.5 h1:6njw80OqDlRSKJI4c/cksT4aRNSYQMLlkZ/ZGzQMF4M=
-github.com/vikpe/masterstat v0.1.5/go.mod h1:RFa1qHeIVWp/787CNsBWegD4Q2uq3pMYkf/bVzwOc4g=
-github.com/vikpe/udpclient v0.1.0 h1:MUNgWuDRsklZ2t4TYaqQyzgbrD2wIhmFctNYesgEgKU=
-github.com/vikpe/udpclient v0.1.0/go.mod h1:kxOJn7/0GRf6M6S8sfXpXqD8nRvCc7l9Jr+o4nPZDWI=
+github.com/vikpe/masterstat v0.1.6 h1:L99hlyHmewcCCyMCHCO/V/CZ8IERKvL3WiolEPJcwh4=
+github.com/vikpe/masterstat v0.1.6/go.mod h1:TzO1cssnM+0nCC4fMFENfGrE0SzRayXOxySFW8UoIi0=
+github.com/vikpe/udpclient v0.1.2 h1:0eXEpk6uazzJFj1hmIimcEL2l4MWIgf4PJ39uLiW1Kc=
+github.com/vikpe/udpclient v0.1.2/go.mod h1:zesh7J8slDh00/mQ7/WbvsPta0vOyOZQxqo3U3HzT+k=
 gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c h1:dUUwHk2QECo/6vqA44rthZ8ie2QXMNeKRTHCNY2nXvo=
