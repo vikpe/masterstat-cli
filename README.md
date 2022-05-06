@@ -1,4 +1,4 @@
-# masterstat-cli [![build](https://github.com/vikpe/masterstat-cli/actions/workflows/build.yml/badge.svg)](https://github.com/vikpe/masterstat-cli/actions/workflows/build.yml)
+# masterstat-cli [![build](https://github.com/vikpe/masterstat-cli/actions/workflows/build.yml/badge.svg)](https://github.com/vikpe/masterstat-cli/actions/workflows/build.yml)  [![codecov](https://codecov.io/gh/vikpe/masterstat-cli/branch/main/graph/badge.svg)](https://codecov.io/gh/vikpe/masterstat-cli)
 
 ```shell
 Fetch server addresses from QuakeWorld master servers.
