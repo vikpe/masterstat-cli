@@ -64,3 +64,5 @@ func TestError(t *testing.T) {
 	output := runner.run("foo:666")
 	assert.Contains(t, output, "ERROR:")
 }
+
+// TODO: listen to udp socket and respond with list of servers
