@@ -3,24 +3,26 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"net"
 	"os"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/assert"
 )
 
-type TestRunner struct {
+type AppRunner struct {
 	app string
 }
 
-func (ar TestRunner) run(appArgs string) string {
+func (ar AppRunner) run(appArgs string) string {
 	argsStr := strings.TrimSpace(fmt.Sprintf("%s %s", ar.app, appArgs))
 	argsArr := strings.Split(argsStr, " ")
 	return captureOutput(func() { run(argsArr) })
 }
 
-var runner = TestRunner{
+var app = AppRunner{
 	app: "masterstat",
 }
 
@@ -50,19 +52,46 @@ Example:   masterstat master.quakeworld.nu:27000 qwmaster.ocrana.de:27000
 `
 
 	t.Run("No args", func(t *testing.T) {
-		assert.Equal(t, runner.run(""), helpText)
+		assert.Equal(t, app.run(""), helpText)
 	})
 
 	t.Run("Help", func(t *testing.T) {
-		assert.Equal(t, runner.run("help"), helpText)
-		assert.Equal(t, runner.run("--help"), helpText)
-		assert.Equal(t, runner.run("-h"), helpText)
+		assert.Equal(t, app.run("help"), helpText)
+		assert.Equal(t, app.run("--help"), helpText)
+		assert.Equal(t, app.run("-h"), helpText)
 	})
 }
 
-func TestError(t *testing.T) {
-	output := runner.run("foo:666")
-	assert.Contains(t, output, "ERROR:")
-}
+func TestServerAddresses(t *testing.T) {
+	t.Run("UDP request error", func(t *testing.T) {
+		output := app.run("foo:666")
+		assert.Contains(t, output, "ERROR:")
+	})
 
-// TODO: listen to udp socket and respond with list of servers
+	t.Run("Get server addresses", func(t *testing.T) {
+		udpListenAndRespond := func(addr string, response []byte) {
+			conn, _ := net.ListenPacket("udp", addr)
+			buffer := make([]byte, 1024)
+			_, dst, _ := conn.ReadFrom(buffer)
+			conn.WriteTo(response, dst)
+		}
+
+		go func() {
+			responseBody := []byte{
+				0xff, 0xff, 0xff, 0xff, 0x64, 0x0a, // header
+				0x42, 0x45, 0x65, 0x94, 0x6b, 0x6c, //  server 1
+				0xf5, 0x49, 0x6f, 0x6b, 0x6d, 0xc8, //  server 2
+			}
+			udpListenAndRespond(":8000", responseBody)
+		}()
+		time.Sleep(10 * time.Millisecond)
+
+		output := app.run(":8000")
+		expectedServers := []string{
+			"66.69.101.148:27500",
+			"245.73.111.107:28104",
+		}
+		expectedOutput := strings.Join(expectedServers, "\n") + "\n"
+		assert.Equal(t, expectedOutput, output)
+	})
+}
