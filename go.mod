@@ -6,6 +6,7 @@ require (
 	github.com/stretchr/testify v1.7.1
 	github.com/urfave/cli/v2 v2.5.1
 	github.com/vikpe/masterstat v0.1.7
+	github.com/vikpe/udphelper v0.1.0
 )
 
 require (

@@ -3,13 +3,13 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
-	"net"
 	"os"
 	"strings"
 	"testing"
 	"time"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/vikpe/udphelper"
 )
 
 type AppRunner struct {
@@ -69,20 +69,13 @@ func TestServerAddresses(t *testing.T) {
 	})
 
 	t.Run("Get server addresses", func(t *testing.T) {
-		udpListenAndRespond := func(addr string, response []byte) {
-			conn, _ := net.ListenPacket("udp", addr)
-			buffer := make([]byte, 1024)
-			_, dst, _ := conn.ReadFrom(buffer)
-			conn.WriteTo(response, dst)
-		}
-
 		go func() {
 			responseBody := []byte{
 				0xff, 0xff, 0xff, 0xff, 0x64, 0x0a, // header
 				0x42, 0x45, 0x65, 0x94, 0x6b, 0x6c, //  server 1
 				0xf5, 0x49, 0x6f, 0x6b, 0x6d, 0xc8, //  server 2
 			}
-			udpListenAndRespond(":8000", responseBody)
+			udphelper.New(":8000").Respond(responseBody)
 		}()
 		time.Sleep(10 * time.Millisecond)
 
