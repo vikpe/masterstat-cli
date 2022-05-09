@@ -52,3 +52,9 @@ git clone git@github.com:vikpe/masterstat-cli.git
 cd masterstat-cli
 go build
 ```
+
+## See also
+
+* [masterstat](https://github.com/vikpe/masterstat)
+* [serverstat](https://github.com/vikpe/serverstat)
+* [serverstat-cli](https://github.com/vikpe/serverstat-cli)
