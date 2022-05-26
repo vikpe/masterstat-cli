@@ -81,8 +81,8 @@ func TestServerAddresses(t *testing.T) {
 
 		output := app.run(":8000")
 		expectedServers := []string{
-			"66.69.101.148:27500",
 			"245.73.111.107:28104",
+			"66.69.101.148:27500",
 		}
 		expectedOutput := strings.Join(expectedServers, "\n") + "\n"
 		assert.Equal(t, expectedOutput, output)
