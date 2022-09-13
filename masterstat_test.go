@@ -63,12 +63,12 @@ Example:   masterstat master.quakeworld.nu:27000 qwmaster.ocrana.de:27000
 }
 
 func TestServerAddresses(t *testing.T) {
-	t.Run("UDP request error", func(t *testing.T) {
+	t.Run("Error", func(t *testing.T) {
 		output := app.run("foo:666")
-		assert.Contains(t, output, "ERROR:")
+		assert.Equal(t, output, "")
 	})
 
-	t.Run("Get server addresses", func(t *testing.T) {
+	t.Run("All success", func(t *testing.T) {
 		go func() {
 			responseBody := []byte{
 				0xff, 0xff, 0xff, 0xff, 0x64, 0x0a, // header
@@ -80,6 +80,26 @@ func TestServerAddresses(t *testing.T) {
 		time.Sleep(10 * time.Millisecond)
 
 		output := app.run(":8000")
+		expectedServers := []string{
+			"245.73.111.107:28104",
+			"66.69.101.148:27500",
+		}
+		expectedOutput := strings.Join(expectedServers, "\n") + "\n"
+		assert.Equal(t, expectedOutput, output)
+	})
+
+	t.Run("Success and error", func(t *testing.T) {
+		go func() {
+			responseBody := []byte{
+				0xff, 0xff, 0xff, 0xff, 0x64, 0x0a, // header
+				0x42, 0x45, 0x65, 0x94, 0x6b, 0x6c, //  server 1
+				0xf5, 0x49, 0x6f, 0x6b, 0x6d, 0xc8, //  server 2
+			}
+			udphelper.New(":8001").Respond(responseBody)
+		}()
+		time.Sleep(10 * time.Millisecond)
+
+		output := app.run(":8001 foo:666")
 		expectedServers := []string{
 			"245.73.111.107:28104",
 			"66.69.101.148:27500",

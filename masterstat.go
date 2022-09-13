@@ -1,7 +1,9 @@
 package main
 
 import (
+	"errors"
 	"fmt"
+	"log"
 	"os"
 
 	"github.com/urfave/cli/v2"
@@ -23,14 +25,19 @@ Example:   {{.Name}} master.quakeworld.nu:27000 qwmaster.ocrana.de:27000
 		Version:     "__VERSION__", // updated during build workflow
 		Action: func(c *cli.Context) error {
 			masterAddresses := c.Args().Slice()
-			serverAddresses, err := masterstat.GetServerAddressesFromMany(masterAddresses)
-
-			if err != nil {
-				return err
-			}
+			serverAddresses, errs := masterstat.GetServerAddressesFromMany(masterAddresses)
 
 			for _, serverAddress := range serverAddresses {
 				fmt.Println(serverAddress)
+			}
+
+			if len(errs) > 0 {
+				log.Printf("ERRORS (%d):", len(errs))
+				for _, err := range errs {
+					log.Print(err)
+				}
+
+				return errors.New("error")
 			}
 
 			return nil
@@ -43,7 +50,6 @@ Example:   {{.Name}} master.quakeworld.nu:27000 qwmaster.ocrana.de:27000
 
 	err := app.Run(args)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "ERROR: %s\n", err)
 		return 1
 	}
 
